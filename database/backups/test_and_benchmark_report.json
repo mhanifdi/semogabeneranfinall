@@ -1,0 +1,239 @@
+{
+  "executedAt": "2026-10-31T17:09:28.123Z",
+  "runtime": "Node.js v26.13.0 (win32/x64)",
+  "totalTests": 24,
+  "passedCount": 24,
+  "failedCount": 0,
+  "results": [
+    {
+      "suite": "Suite A",
+      "name": "A1. Versioned migrations applied & all 35 relational tables exist",
+      "passed": true,
+      "durationMs": 0.36
+    },
+    {
+      "suite": "Suite A",
+      "name": "A2. Foreign key constraint rejects orphan habit_entries & memberships",
+      "passed": true,
+      "durationMs": 0.42
+    },
+    {
+      "suite": "Suite A",
+      "name": "A3. Unique constraints reject duplicate NISN, NIP, and username",
+      "passed": true,
+      "durationMs": 0.14
+    },
+    {
+      "suite": "Suite B",
+      "name": "B1. Cryptographic scrypt password hashing uses unique random salt per call",
+      "passed": true,
+      "durationMs": 61.65
+    },
+    {
+      "suite": "Suite B",
+      "name": "B2. Valid login succeeds across all roles (Siswa, Walas, Wali, Tim 7 KAIH, Admin)",
+      "passed": true,
+      "durationMs": 80.55
+    },
+    {
+      "suite": "Suite B",
+      "name": "B3. Invalid login rejected (401) & non-admin blocked from /api/admin/login (403)",
+      "passed": true,
+      "durationMs": 24.75
+    },
+    {
+      "suite": "Suite B",
+      "name": "B4. Expired and revoked sessions are rejected with 401 Unauthorized",
+      "passed": true,
+      "durationMs": 22.32
+    },
+    {
+      "suite": "Suite B",
+      "name": "B5. IDOR Protection: Siswa A cannot read or write Siswa B journal or report (403)",
+      "passed": true,
+      "durationMs": 1.98
+    },
+    {
+      "suite": "Suite B",
+      "name": "B6. Class Scope Protection: Guru Walas XI-MIPA-1 blocked from XI-MIPA-2 (403)",
+      "passed": true,
+      "durationMs": 5.51
+    },
+    {
+      "suite": "Suite B",
+      "name": "B7. Rombel Scope Protection: Guru Wali Rombel A blocked from Rombel B (403)",
+      "passed": true,
+      "durationMs": 6.4
+    },
+    {
+      "suite": "Suite B",
+      "name": "B8. Unauthenticated access to sensitive endpoints rejected with 401",
+      "passed": true,
+      "durationMs": 0.19
+    },
+    {
+      "suite": "Suite C",
+      "name": "C1. Valid Bangun Pagi submission computes exact score & stores components",
+      "passed": true,
+      "durationMs": 6.19
+    },
+    {
+      "suite": "Suite C",
+      "name": "C2. Duplicate submission to a completed/locked habit card is rejected (409)",
+      "passed": true,
+      "durationMs": 0.96
+    },
+    {
+      "suite": "Suite C",
+      "name": "C3. Missed (Formulir Terlewat) submission has NO -5 penalty per Final Spec",
+      "passed": true,
+      "durationMs": 3.29
+    },
+    {
+      "suite": "Suite C",
+      "name": "C4. Female student Islam Halangan mode calculates 75 + 25 = 100 without double counting",
+      "passed": true,
+      "durationMs": 3.85
+    },
+    {
+      "suite": "Suite C",
+      "name": "C5. Aktivitas Seru (+10 bonus) caps habit score at 100 & routes overflow to Poin Hebat",
+      "passed": true,
+      "durationMs": 6.36
+    },
+    {
+      "suite": "Suite C",
+      "name": "C6. Controlled Admin score correction requires reason & writes audit + revision logs",
+      "passed": true,
+      "durationMs": 6.14
+    },
+    {
+      "suite": "Suite D",
+      "name": "D1. Atomic transaction rolls back completely on mid-operation failure",
+      "passed": true,
+      "durationMs": 0.35
+    },
+    {
+      "suite": "Suite D",
+      "name": "D2. Completing all 7 habits on a date updates journal status to SELESAI & streak",
+      "passed": true,
+      "durationMs": 34.65
+    },
+    {
+      "suite": "Suite D",
+      "name": "D3. Moving student class & rombel preserves historical journals & records membership history",
+      "passed": true,
+      "durationMs": 3.24
+    },
+    {
+      "suite": "Suite D",
+      "name": "D4. Deactivating a student account revokes active sessions & blocks login while keeping history",
+      "passed": true,
+      "durationMs": 53.34
+    },
+    {
+      "suite": "Suite E",
+      "name": "E1. Individual Student Report matches exact SQL average of habit_entries",
+      "passed": true,
+      "durationMs": 22.13
+    },
+    {
+      "suite": "Suite E",
+      "name": "E2. Class Analytics, Rombel Analytics & School Analytics match source student counts",
+      "passed": true,
+      "durationMs": 5.51
+    },
+    {
+      "suite": "Suite F",
+      "name": "F1. All 8 performance benchmark scenarios at 750-student scale execute within target SLAs",
+      "passed": true,
+      "durationMs": 0.12
+    }
+  ],
+  "scaleBenchmark": {
+    "totalActiveStudents": 750,
+    "totalClasses": 21,
+    "totalRombels": 15,
+    "totalHabitEntries": 52220,
+    "seedDurationMs": 1654,
+    "memoryReport": {
+      "rssMb": 85.3,
+      "heapTotalMb": 30.5,
+      "heapUsedMb": 18.7
+    },
+    "metrics": [
+      {
+        "scenario": "1. Login Autentikasi (scrypt KDF + Session Insert)",
+        "iterations": 20,
+        "avgMs": 14.01,
+        "minMs": 12.63,
+        "maxMs": 17.12,
+        "p95Ms": 17.12,
+        "opsPerSec": 71.4
+      },
+      {
+        "scenario": "2. Pengisian Jurnal & Kebiasaan (Transaksi Relasional Penuh)",
+        "iterations": 50,
+        "avgMs": 2.53,
+        "minMs": 1.43,
+        "maxMs": 26.06,
+        "p95Ms": 3.49,
+        "opsPerSec": 394.9
+      },
+      {
+        "scenario": "3. Pembacaan Riwayat Kalender 14 Hari Siswa",
+        "iterations": 50,
+        "avgMs": 0.64,
+        "minMs": 0.38,
+        "maxMs": 4.66,
+        "p95Ms": 1.02,
+        "opsPerSec": 1566.4
+      },
+      {
+        "scenario": "4. Pembacaan Dashboard Harian Siswa (Today Journal)",
+        "iterations": 50,
+        "avgMs": 0.27,
+        "minMs": 0.18,
+        "maxMs": 0.86,
+        "p95Ms": 0.42,
+        "opsPerSec": 3645
+      },
+      {
+        "scenario": "5. Pembacaan Analitik Kelas & Rombel (Guru Walas & Guru Wali)",
+        "iterations": 30,
+        "avgMs": 35.59,
+        "minMs": 29.21,
+        "maxMs": 90.26,
+        "p95Ms": 41.41,
+        "opsPerSec": 28.1
+      },
+      {
+        "scenario": "6. Pembacaan Rapor Individu Siswa (Perbandingan Siswa vs Kelas vs Sekolah)",
+        "iterations": 30,
+        "avgMs": 97.89,
+        "minMs": 84.37,
+        "maxMs": 115.63,
+        "p95Ms": 111.07,
+        "opsPerSec": 10.2
+      },
+      {
+        "scenario": "7. Pembacaan Leaderboard Sekolah (750 Siswa Aktif)",
+        "iterations": 30,
+        "avgMs": 0.28,
+        "minMs": 0.22,
+        "maxMs": 0.54,
+        "p95Ms": 0.47,
+        "opsPerSec": 3525.9
+      },
+      {
+        "scenario": "8. Pembacaan Analitik Sekolah & Angkatan (750 Siswa, 52.500+ Entri)",
+        "iterations": 20,
+        "avgMs": 58.45,
+        "minMs": 47.26,
+        "maxMs": 116.09,
+        "p95Ms": 116.09,
+        "opsPerSec": 17.1
+      }
+    ]
+  }
+}

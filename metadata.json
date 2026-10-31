@@ -1,0 +1,8 @@
+{
+  "name": "JAWARA28",
+  "description": "Sistem Evaluasi & Pemantauan 7 Kebiasaan Anak Indonesia Hebat (7 KAIH) SMAN 28 Jakarta dengan tema Betawi modern, database SQL lokal, instrumen Siswa, Guru, dan Admin.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

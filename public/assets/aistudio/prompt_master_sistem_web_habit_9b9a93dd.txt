@@ -1,0 +1,63 @@
+=======================================================================
+PROMPT MASTER: PEMBANGUNAN SISTEM WEBSITE HABIT TRACKER (Strict Rules)
+=======================================================================
+
+Anda adalah Senior Full-Stack Developer & UI/UX Expert. Buat sistem website "Habit Tracker" berdasarkan spesifikasi teknis dan aturan mutlak di bawah ini. JANGAN buat asumsi sendiri. 
+
+-----------------------------------------------------------------------
+[1] ATURAN MUTLAK (CRITICAL RULES) - DILARANG MELANGGAR!
+-----------------------------------------------------------------------
+- JANGAN tambahkan "Fitur Gaib": Hanya buat fitur yang tertulis di dokumen ini. Jangan buat sistem login kompleks, gamifikasi aneh, atau fitur sosial jika tidak diminta.
+- JANGAN gunakan "Data Gaib / Dummy Fake Data": Data awal saat website dirender HARUS KOSONG (0 atau null) sampai pengguna benar-benar mengkliknya. Jangan isi data secara otomatis (hardcoded data generator).
+- DATABASE SQL LOKAL: Wajib menggunakan database SQL berbasis file lokal (seperti SQLite) yang disimpan murni di dalam direktori website itu sendiri (/database/local_habit.db). Dilarang keras menggunakan Cloud DB (Firebase, Supabase, AWS, dll). Data diambil murni dengan query SELECT dari riwayat klik.
+
+-----------------------------------------------------------------------
+[2] LOGIKA SISTEM & FITUR "ISI KEBIASAANKU"
+-----------------------------------------------------------------------
+Tampilkan daftar kebiasaan harian pengguna. 
+Aturan rendering dan validasi:
+- TIDAK BERURUTAN: Pengguna bebas mengisi kebiasaan kapan saja tanpa harus urut dari pagi ke malam. Render daftar dalam bentuk Card/List yang setara.
+- KATEGORI LIMIT 1x SEHARI (Max Klik = 1): Bangun, Tidur, Olahraga, Gemar Belajar, Bermasyarakat.
+  > Logika: Jika tombol ini di-klik hari ini, kirim data ke SQL Lokal, lalu ubah state UI tombol menjadi "Disabled" (terkunci/redup) hingga otomatis ter-reset pada pukul 00:00 keesokan harinya.
+- KATEGORI MULTI-ENTRI (Bisa berkali-kali): Ibadah, Makan.
+  > Logika: Gunakan sistem Counter (Tombol [+] dan [-]) atau sub-ceklis. Setiap kali di-klik, INSERT data/waktu ke SQL lokal dan tambahkan jumlah counter di UI.
+
+-----------------------------------------------------------------------
+[3] TATA LETAK & RESPONSIVITAS (LAYOUT)
+-----------------------------------------------------------------------
+Website WAJIB responsif menggunakan CSS Flexbox/Grid dengan spesifikasi ketat berdasarkan ukuran layar:
+
+A. LAYOUT LAPTOP/DESKTOP (Layar > 1024px)
+- Struktur: 3 Kolom.
+- Kiri (Navigasi): Sidebar tetap (fixed) untuk menu navigasi utama.
+- Tengah (Konten Utama): Menampilkan daftar "Isi Kebiasaanku" menggunakan format GRID (3 hingga 4 kartu sejajar).
+- Kanan (Informasi): Panel statistik ringkas (opsional, jika kosong biarkan whitespace elegan). Form input atau popup menggunakan Modal besar di tengah layar.
+- Spacing: Margin dan padding harus luas (breatheable UI).
+
+B. LAYOUT TABLET (Layar 768px - 1024px)
+- Struktur: 2 Kolom.
+- Navigasi: Sidebar kiri diciutkan (collapsible) menjadi deretan Ikon saja, atau menggunakan Top Navbar.
+- Tengah (Konten Utama): Daftar kebiasaan berubah menjadi GRID 2 Kolom (2 kartu sejajar). Ukuran font dan tombol sedikit dibesarkan dari versi desktop.
+
+C. LAYOUT HP/MOBILE (Layar < 768px) - MOBILE FIRST UI
+- Struktur: 1 Kolom Penuh.
+- Navigasi: WAJIB menggunakan "Bottom Navigation Bar" (Menu menempel di bawah layar, ala aplikasi iOS/Android) untuk kemudahan akses jempol.
+- Tengah (Konten Utama): Daftar kebiasaan menjadi List Vertikal (1 kartu per baris), di-scroll ke bawah.
+- Elemen Interaksi: Tombol ceklis dan kartu harus besar (minimal target sentuh 48x48px). Semua interaksi harus touch-friendly. Header atas menempel (sticky).
+
+-----------------------------------------------------------------------
+[4] TEMA VISUAL, WARNA & UI/UX
+-----------------------------------------------------------------------
+- Base Theme: Modern, Clean, Minimalist (Gunakan dominasi warna latar Putih Gading, Abu-abu terang, atau Tema Gelap Elegan/Dark Mode navy/hitam).
+- PENGGUNAAN WARNA PINK (MINORITAS): Warna pink HANYA BOLEH digunakan sebagai "Accent Color" minor. 
+  > Contoh penggunaan pink: Angka notifikasi bulat kecil, warna titik border aktif saat diklik, atau warna progress bar yang sangat tipis. Dilarang memakai warna pink sebagai latar belakang utama atau tombol raksasa agar tidak mencolok (kurang nyambung).
+
+-----------------------------------------------------------------------
+[5] ANIMASI & INTERAKSI (MICRO-INTERACTIONS)
+-----------------------------------------------------------------------
+Animasi tidak boleh lebay, tapi harus terasa premium dan smooth (Gunakan CSS transitions 0.2s - 0.3s ease-in-out).
+- Efek Hover (Desktop/Tablet): Saat kursor berada di atas Kartu Kebiasaan, kartu akan sedikit membesar (scale: 1.02) atau terangkat sedikit ke atas dengan tambahan box-shadow halus yang perlahan muncul.
+- Efek Klik / Tap: Berikan efek "Ripple" (riak) atau tombol sedikit mengecil (scale: 0.95) lalu kembali normal untuk memberi feedback bahwa data sudah tercatat.
+- Efek Transisi Data: Saat tombol limit 1x sehari diklik, berikan animasi perubahan warna yang mulus ke mode "Disabled" (abu-abu/redup) tanpa layout jumping. Saat counter multi-entri ditambah, animasikan angka dengan efek slide-up kecil.
+=======================================================================
+TUGASMU SEKARANG: Tuliskan struktur kode (HTML/CSS/JS/SQL) murni berdasarkan spesifikasi teknis di atas, tanpa menambahi ide di luar dokumen ini!
